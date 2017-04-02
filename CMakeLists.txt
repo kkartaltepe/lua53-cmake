@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.4)
 
 project(lua)
 
-set(LUA_LIB_HEADER src/lualib.h src/lauxlib.h)
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
+set(LUA_LIB_HEADER src/lua.h src/lua.hpp src/luaconf.h src/lualib.h src/lauxlib.h)
 set(LUA_LIB_SRC src/lauxlib.c src/lbaselib.c src/lbitlib.c src/lcorolib.c src/ldblib.c
 	src/liolib.c src/lmathlib.c src/loslib.c src/lstrlib.c src/ltablib.c src/lutf8lib.c
 	src/loadlib.c src/linit.c)
@@ -27,3 +30,10 @@ target_link_libraries(lua lua53)
 set(LUA_C_SRC src/luac.c)
 add_executable(luac ${LUA_C_SRC} ${LUA_CORE_HEADER} ${LUA_CORE_SRC})
 target_link_libraries(luac lua53)
+
+install(TARGETS luac lua lua53
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib)
+install(FILES ${LUA_LIB_HEADER}
+	DESTINATION include)
