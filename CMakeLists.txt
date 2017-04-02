@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.4)
 
 project(lua)
 
-SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
-SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-
 set(LUA_LIB_HEADER src/lua.h src/lua.hpp src/luaconf.h src/lualib.h src/lauxlib.h)
 set(LUA_LIB_SRC src/lauxlib.c src/lbaselib.c src/lbitlib.c src/lcorolib.c src/ldblib.c
 	src/liolib.c src/lmathlib.c src/loslib.c src/lstrlib.c src/ltablib.c src/lutf8lib.c
